@@ -1,0 +1,32 @@
+<div class="income">
+    <span class="material-icons-sharp">task_alt</span>
+    <div class="middle">
+        <div class="left">
+            <h2>Completed Tasks</h2>
+            {%for f in finished%}
+            <h3>finished task: {{f.finished_task}}</h3>
+            <h3>author: {{f.operator_username}}</h3>
+            {%endfor%}
+        </div>
+        <div class="progres">
+            <svg>
+                <circle cx="38" cy="38" r="36" class="prog"></circle>
+            </svg>
+            <div class="number">
+                <p>{{finished_percent}}%</p>
+            </div>
+        </div>
+    </div>
+    <small class="text-muted"> Last 24 hours </small>
+</div>
+<script>
+    let progCircle = document.querySelector(".prog");
+    let radial = progCircle.r.baseVal.value;
+    let circ = radial * 2 * Math.PI;
+    progCircle.style.strokeDasharray = circ;
+    function setProgress(percent) {
+        progCircle.style.strokeDashoffset =
+            circ - (percent / 100) * circ;
+    }
+    setProgress("{{finished_percent}}")
+</script>

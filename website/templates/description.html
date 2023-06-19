@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/style.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static',filename='/images/p.png')}}">
+    <script defer type="text/javascript" src="{{url_for('static',filename='JS/script.js')}}"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=True)%} {%if
+        messages%} {%for category, message in messages%} {%if
+        category=="error"%}
+        <div class="alert alert-danger alert-dismissible " role="alert">
+            <div class="message">{{message}}</div>
+
+
+        </div>
+        {%else%}
+        <div class="alert alert-primary alert-dismissible " role="alert">
+            {{message}}
+
+        </div>
+        {%endif%} {%endfor%}
+        <script>
+            var alerts = document.querySelectorAll('.alert');
+            setTimeout(function () {
+                alerts.forEach(function (alert) {
+                    alert.remove();
+                });
+            }, 6000);
+        </script>
+        {%endif%} {%endwith%}
+    </div>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='images/logo1.png')}}" alt="Logo" />
+
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/dashboard" class="active">
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="{{url_for('views.description', task_id=current_user.id)}}">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <h3>Projects</h3>
+                </a>
+                </a>
+                <a href="/calendar">
+                    <span class="material-symbols-outlined">
+                        calendar_month
+                    </span>
+                    <h3>Calendar</h3>
+                </a>
+
+                <a href="/profile/{{current_user.id}}">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <h3>Profile</h3>
+                </a>
+
+                <a href="/tasks">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>New task</h3>
+                </a>
+
+                <!-- <span class="material-icons-sharp" a href="/logout"> logout </span> -->
+                <a href="/logout"><span class="material-icons-sharp">logout</span>
+                    <h3>logout</h3>
+                </a>
+
+            </div>
+        </aside>
+
+        <main>
+            <div class="search-bar">
+                <form action="{{url_for('views.search_result')}}" method="POST">
+                    <input type="search" name="searched" placeholder="search for Task"><button type="submit"><span
+                            class="material-icons-sharp">search</span></button>
+                </form>
+            </div>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <p id="date"></p>
+            </div>
+            <br>
+            <br>
+            {%for t in tasks%}
+            <div class="card ">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <a href="/tasks/{{t.user.username}}"
+                        style="text-decoration: none; color:black; font-size: 18px; font-weight: bold;">{{t.user.username}}</a>
+                    {%if user.id==t.operator%}
+                    <div class="btn-group">
+
+                        <button class="btn ">
+                            <a style="color: white; text-decoration: none" href="/update/{{t.id}}">update</a>
+                        </button>
+                        <button class="btn ">
+                            <a style="text-decoration: none; color: white" href="/delete/{{t.id}}">
+                                Delete
+                            </a>
+                        </button>
+                        <button class="btn " ">
+                            <a style=" color: white;" href="/finished/{{t.id}}">finished</a>
+                        </button>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{t.open_task}} </h4>
+                    <hr>
+                    <hr>
+                    <div>
+                        <p class="card-text" style="max-width: 400px;">{{t.task_descriptif}}</p>
+                    </div>
+                    <div>
+                        {% for comment in t.comment %}
+                        <small class="text-muted">{{comment.date_created}}</small> <br>
+                        <a href="/posts/{{comment.user.username}}">{{comment.user.username}}</a>
+                        <br>
+                        <div class="com">
+                            <p>{{ comment.comment }}</p>
+                            {%if user.id==comment.operator or user.id==t.operator%}
+                            <form action="/delete_comment/{{ comment.id }}" method="post">
+                                <button class="del">Delete </button>
+                            </form>
+                            {%endif%}
+                        </div>
+                        <br>
+
+                        {%endfor%}
+
+                        <br>
+
+                        <form action="/description/{{t.id}}" method='post'>
+                            <input type="texte" name="comment" placeholder="enter your comment" required>
+                            <button class="commen">submit </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <br>
+            {%endfor%}
+            <br>
+            <br>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active" id='light'> light_mode </span>
+                    <span class="material-icons-sharp" id='dark'> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{current_user.username}}</b></p>
+                    </div>
+                    <div class="profile-photo">
+                        {%if user.picture%}
+                        <img class="profile_picture_bar"
+                            src='{{url_for("static",filename="/images/profile_pictures/"+user.picture)}}' alt="">
+                        {%else%}
+                        <span class="material-icons-sharp">account_circle</span>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Dashboard</title>
+    <link rel="shortcut icon" href="{{url_for('static',filename='/images/p.png')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/style.css')}}">
+    <script defer type="text/javascript" src="{{url_for('static',filename='JS/script.js')}}"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='images/logo1.png')}}" alt="Logo" />
+
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/dashboard" class="active">
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/description/{{current_user.id}}">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <h3>Project</h3>
+                </a>
+                <a href="/calendar">
+                    <span class="material-symbols-outlined">
+                        calendar_month
+                    </span>
+                    <h3>Calendar</h3>
+                </a>
+
+
+                <a href="/profile/{{current_user.id}}">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <h3>Profile</h3>
+                </a>
+
+                <a href="/tasks">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>New task</h3>
+                </a>
+
+                <a href="/logout"><span class="material-icons-sharp">logout</span>
+                    <h3>logout</h3>
+                </a>
+
+            </div>
+        </aside>
+
+        <main>
+            <h1>Dashboard</h1>
+            <div class="date">
+                <p id="date"></p>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="wide">
+                <div class="task form ">
+                    <form action="" method="POST">
+                        <label class="p-adding" for="task">Open Task</label>
+                        <input class="t-texte" type="text" name="task" required>
+                        <label class="p-adding" for="task_descriptif">
+                            Describe your task
+                        </label>
+                        <textarea class="t-texte" name="task_descriptif" cols="30" rows="10"></textarea>
+                        <button class="submit-5">submit</button>
+                    </form>
+                    <br>
+
+                </div>
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active" id='light'> light_mode </span>
+                    <span class="material-icons-sharp" id='dark'> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{user.username}}</b></p>
+                    </div>
+                    <div class="profile-photo">
+                        {%if user.picture%}
+                        <div class="profile-photo">
+                            <img class="profile_picture_bar"
+                                src='{{url_for("static",filename="/images/profile_pictures/"+user.picture)}}' alt="">
+                            {%else%}
+                            <span class="material-icons-sharp">account_circle</span>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

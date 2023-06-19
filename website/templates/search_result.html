@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Dashboard</title>
+    <link rel="shortcut icon" href="{{url_for('static',filename='/images/p.png')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/style.css')}}">
+    <script defer type="text/javascript" src="{{url_for('static',filename='Js/script.js')}}"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='images/logo1.png')}}" alt="Logo" />
+
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/dashboard" class="active">
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="{{url_for('views.description', task_id=current_user.id)}}">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <h3>Projects</h3>
+                </a>
+                <a href="/calendar">
+                    <span class="material-symbols-outlined">
+                        calendar_month
+                    </span>
+                    <h3>Calendar</h3>
+                </a>
+
+
+                <a href="/profile/{{current_user.id}}">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <h3>Profile</h3>
+                </a>
+
+                <a href="/tasks">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>New task</h3>
+                </a>
+
+                <!-- <span class="material-icons-sharp" a href="/logout"> logout </span> -->
+                <a href="/logout"><span class="material-icons-sharp">logout</span>
+                    <h3>logout</h3>
+                </a>
+
+            </div>
+        </aside>
+
+        <main>
+            <div class="search-bar">
+                {{form.hidden_tag()}}
+                <form action="{{url_for('views.search_result')}}" method="POST">
+                    <input type="search" name="searched" placeholder="search for Task"><button type="submit"><span
+                            class="material-icons-sharp">search</span></button>
+                </form>
+            </div>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <p id="date"></p>
+            </div>
+            <div class="wide">
+                <br>
+                <br>
+                <div class="all">
+                    <div class="slider">
+                        <img src="{{url_for('static',filename='images/image.png')}}" alt="photo">
+                        <div class="text">
+                            <h1>Welcome to ProTask manager</h1>
+                            <br>
+                            <p>where you can manage your tasks easily.</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="insights">
+
+
+                    <br />
+                    <br />
+                    <h2>You Searched For ...</h2>
+                    <h2>{{ output }}</h2>
+
+                    {% for r in search_result %}
+                    <br />
+                    the user: {{ r.user.username }}
+                    <br />
+                    the post: {{r.open_task}}
+                    <br />
+                    date creation: {{ r.date_created.strftime('%m/%d/%Y %I:%M %p') }}
+                    <br />
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active" id='light'> light_mode </span>
+                    <span class="material-icons-sharp" id='dark'> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{current_user.username}}</b></p>
+
+                    </div>
+                    <div class="profile-photo">
+                        {%if user.picture%}
+                        <div class="profile-photo">
+                            <img class="profile_picture_bar"
+                                src='{{url_for("static",filename="/images/profile_pictures/"+user.picture)}}' alt="">
+                            {%else%}
+                            <span class="material-icons-sharp">account_circle</span>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

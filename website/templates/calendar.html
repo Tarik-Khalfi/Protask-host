@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/style.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static',filename='/images/p.png')}}">
+    <script defer type="text/javascript" src="{{url_for('static',filename='JS/script.js')}}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"
+        integrity="sha256-8EcfIJRWyvnu/U0OsfCk05x1JGVmeC2a7sJQHrbWYSA=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=True)%} {%if
+        messages%} {%for category, message in messages%} {%if
+        category=="error"%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {%else%}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            {{message}}
+
+        </div>
+        {%endif%} {%endfor%}
+        <script>
+            var alerts = document.querySelectorAll('.alert');
+            setTimeout(function () {
+                alerts.forEach(function (alert) {
+                    alert.remove();
+                });
+            }, 6000);
+        </script>
+        {%endif%} {%endwith%}
+    </div>
+
+    </div>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='images/logo1.png')}}" alt="Logo" />
+
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/dashboard" class="active">
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="{{url_for('views.description', task_id=current_user.id)}}">
+                    <span class="material-icons-sharp">description</span>
+                    <h3>Projects</h3>
+                </a>
+                <a href="/calendar">
+                    <span class="material-symbols-outlined">
+                        calendar_month
+                    </span>
+                    <h3>Calendar</h3>
+                </a>
+
+                <a href="/profile/{{current_user.id}}">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <h3>Profile</h3>
+                </a>
+
+                <a href="/tasks">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>New task</h3>
+                </a>
+
+                <!-- <span class="material-icons-sharp" a href="/logout"> logout </span> -->
+                <a href="/logout"><span class="material-icons-sharp">logout</span>
+                    <h3>logout</h3>
+                </a>
+
+            </div>
+        </aside>
+
+        <main>
+            <div class="search-bar">
+                {{form.hidden_tag()}}
+                <form action="{{url_for('views.search_result')}}" method="POST">
+                    <input type="search" name="searched" placeholder="search for Task"><button type="submit"><span
+                            class="material-icons-sharp">search</span></button>
+                </form>
+            </div>
+            <h1>Dashboard</h1>
+            <div class="date">
+                <p id="date"></p>
+            </div>
+            <div class="wide">
+
+                <div id="calendar"></div>
+                <a href="{{url_for('add_event')}}">
+                    <button type="button" class="btn-add">Add event</button>
+                </a>
+            </div>
+
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active" id='light'> light_mode </span>
+                    <span class="material-icons-sharp" id='dark'> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{current_user.username}}</b></p>
+
+                    </div>
+                    <div class="profile-photo">
+                        {%if user.picture%}
+                        <img class="profile_picture_bar"
+                            src='{{url_for("static",filename="/images/profile_pictures/"+user.picture)}}' alt="">
+                        {%else%}
+                        <span class="material-icons-sharp">account_circle</span>
+                    </div>
+                    {%endif%}
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="wide">
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+                        initialView: 'dayGridMonth',
+                        aspectRatio: 2,
+                        events: [
+                            {% for event in events %}
+                        {
+                            title: '{{event.title}}',
+                            start: '{{event.start}}',
+                            end: '{{event.end}}',
+                            url: '{{event.url}}',
+                        },
+                        {% endfor %}
+                            {%for t in task %}
+                {
+                    title: '{{ t.open_task }}',
+                        start: '{{ t.date_created }}',
+                        },
+                {% endfor %}
+                        
+                    ]
+                });
+                calendar.updateSize();
+                calendar.render();
+                });
+            </script>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

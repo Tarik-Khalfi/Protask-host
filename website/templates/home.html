@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{url_for('static',filename='/images/p.png')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='Css/main.css')}}">
+  <title>Welcome to ProTask</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img class="lg-hd" height=" 200px" src="{{url_for('static',filename='images/logo1.png')}}" alt="">
+      <button class="btn-try"><a href="./register" style="text-decoration:none; color:black;">Register</a></button>
+    </nav>
+    <section>
+      <div class="comm-cont">
+        <div class="build-comm">
+          <h3>Construct And Organize Your Work With Ease With ProTask</h3>
+          <p>ProTask is here to help you plannify and monitor your tasks progress. Helps with Teamwork and
+            establish order in daily work. </p>
+          <button class="btn-start"><a href="/login" style="text-decoration:none;color:white;"> Sign in
+            </a></button>
+        </div>
+        <div>
+          <img class="mockup" src="{{url_for('static',filename='images/ORIGINAL.jpg')}}" width="500px" alt="">
+        </div>
+      </div>
+    </section>
+  </header>
+  <main>
+    <article class="article-sect">
+      <div class="article-text">
+        <h3>Efficiency</h3>
+        <p>Efficiency is the key to success, and our task management app is here to help you unlock your full
+          potential. Create
+          tasks, set deadlines, and prioritize your work with ease.</p>
+      </div>
+      <img class="svgs" src="{{url_for('static',filename='images/undraw_accept_tasks_re_09mv.svg')}}" height="" alt="">
+    </article>
+    <article class="article-sect reverse">
+      <img class="svgs" src="{{url_for('static',filename='images/undraw_completed_tasks_vs6q.svg')}}" alt="">
+      <div class="article-text">
+        <h3>Collaborate</h3>
+        <p>Collaboration made simple! Our task management app enables you to share tasks with colleagues,
+          effortlessly. Delegate responsibilities, track progress, and communicate effectively within
+          the app.</p>
+      </div>
+    </article>
+    <article class="article-sect">
+      <div class="article-text">
+        <h3>Usage</h3>
+        <p>Our app allows you to break down complex projects into smaller, manageable subtasks, ensuring you
+          stay on top of your
+          workload.</p>
+      </div>
+      <img class="svgs" src="{{url_for('static',filename='images/undraw_task_list_6x9d.svg')}}" alt="">
+    </article>
+  </main>
+  <footer>
+    <img src="{{url_for('static',filename='images/logo1.png')}}" alt="logo">
+    <div class="content">
+      <div class="services">
+        <h4>What we do</h4>
+        <p><a href="#">Create tasks</a></p>
+        <p><a href="#">share tasks</a></p>
+        <p><a href="#">New project</a></p>
+        <p><a href="#">analytics</a></p>
+      </div>
+      <div class="social-media">
+        <h4>Social</h4>
+        <p>
+          <i class="fab fa-linkedin">Linkedin</i>
+        </p>
+        <p>
+          <i class="fab fa-twitter">Twitter</i>
+        </p>
+        <p>
+          <i class="fab fa-github">Github</i>
+        </p>
+        <p>
+          <i class="fab fa-facebook">Facebook</i>
+        </p>
+        <p>
+          <i class="fab fa-instagram">Instagram</i>
+        </p>
+      </div>
+      <div class="links">
+        <h4>Quick links</h4>
+        <p><a href="#">Home</a></p>
+        <p><a href="#">About Us</a></p>
+        <p><a href="#">What We Do</a></p>
+        <p><a href="#">FAQ</a></p>
+      </div>
+      <div class="details">
+        <h4 class="address">Address</h4>
+        <p>
+          265 Bd Hassan II, Agadir 80000
+        </p>
+        <h4 class="mobile">Mobile</h4>
+        <p>+1-543-123-4567</p>
+        <h4 class="mail">Email</h4>
+        <p>ProTask@gmail.com</p>
+      </div>
+    </div>
+    <footer>
+      <hr />
+      © Copyright 2023 ProTask. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

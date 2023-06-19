@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+
+}
+
+h1 {
+	margin-bottom: 2rem;
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+.alert alert-danger alert-dismissible {
+	width: 100%;
+}
+
+p {
+	font-size: 16px;
+	color: white;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	border: 1px solid #c33764;
+	background-color: #c33764;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container {
+	right: 0;
+	width: 50%;
+	z-index: 1;
+}
+
+.msg {
+	position: absolute;
+	right: 60%;
+	top: 40%;
+	text-align: center;
+	font-size: 35px;
+}
+
+.container2 {
+	background: linear-gradient(to right, #c33764, #1d2671);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+
+/* flash msg------------*/
+.container {
+	width: 100%;
+	/* max-width: 1200px; */
+	margin: 0 auto;
+	padding: 0 20px;
+	z-index: 10;
+}
+
+/* Alert */
+.alert {
+
+	padding: 0.75rem 48rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	width: 100%;
+}
+
+
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-primary {
+	color: #004085;
+	background-color: #cce5ff;
+	border-color: #b8daff;
+}
+
+.alert-dismissible {
+	position: relative;
+	padding-right: 4rem;
+}

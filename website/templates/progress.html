@@ -1,0 +1,29 @@
+<div class="expenses">
+    <span class="material-icons-sharp">update</span>
+    <div class="middle">
+        <div class="left">
+            <h2>In progress tasks</h2>
+            
+        </div>
+        <div class="progres">
+            <svg>
+                <circle cx="38" cy="38" r="36" class="progressive"></circle>
+            </svg>
+            <div class="number">
+                <p>{{task_percent}}%</p>
+            </div>
+        </div>
+    </div>
+    <small class="text-muted"> Last 24 hours </small>
+</div>
+<script>
+    let progresCircle = document.querySelector(".progressive");
+    let rad = progresCircle.r.baseVal.value;
+    let circum = rad * 2 * Math.PI;
+    progresCircle.style.strokeDasharray = circum;
+    function setProgress(percent) {
+        progresCircle.style.strokeDashoffset =
+            circum - (percent / 100) * circum;
+    }
+    setProgress("{{task_percent}}")
+</script>

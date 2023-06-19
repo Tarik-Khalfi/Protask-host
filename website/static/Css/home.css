@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.all {
+  padding: 40px 100px;
+  /* background-image: url(/images/rue-s-XivbqAPEoJg-unsplash.jpg); */
+  background-color: #f6f6f9;
+}
+ul {
+  display: flex;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+nav a {
+  text-decoration: none;
+  color: hsl(240, 40%, 14%);
+}
+nav a:hover {
+  color: #c33764;
+}
+li {
+  font-family: 'Montserrat', sans-serif;
+  margin-right: 25px;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 15px;
+}
+nav img {
+  display: block;
+  float: left;
+  width: 80%;
+  margin-top: -20px;
+  margin-bottom: 50px;
+  margin-left: -50px;
+}
+.container .sec2 img {
+  width: 100%;
+  margin-left: -20px;
+  border-radius: 4%;
+}
+.inside-sec img {
+  position: relative;
+  left: 68rem;
+  top: -300px;
+
+  width: 12%;
+  margin: 10px;
+  border-radius: 10%;
+}
+/* .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+  } */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  background-color: aliceblue;
+}
+.container .sec1 {
+  margin: auto;
+  margin-left: -0px;
+}
+.container h1 {
+  font-family: "Rufina", sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 40px;
+  margin-top: -50px;
+  text-align: center;
+  color: #11174c;
+}
+.container p {
+  font-size: 18px;
+  font-family: "Rufina", sans-serif;
+  line-height: 2rem;
+  text-align: center;
+  margin-left: 1.5rem;
+}
+.container button {
+  display: block;
+  padding: 18px 50px;
+  margin-top: 45px;
+  background-color: #c33764;
+  border: none;
+  color: wheat;
+  font-weight: 700;
+  margin-left: 10rem;
+  border-radius: 5%;
+}
+.container button:hover {
+  opacity: 0.8;
+}
+.container a {
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  font-family: "Inter", sans-serif;
+}
+.about {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: -12rem;
+  background-color: aliceblue;
+}
+.about h1 {
+  font-family: "Rufina", sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #11174c;
+}
+.about h2 {
+  font-family: "Rufina", sans-serif;
+  margin-bottom: 20px;
+}
+.about p {
+  font-family: "Inter", sans-serif;
+  line-height: 38px;
+  max-width: 800px;
+}
+.about img {
+  margin-top: 2rem;
+  width: 50%;
+  max-height: 400px;
+  box-shadow: 2px 2px 2px 2px rgb(179, 175, 175);
+  border-radius: 4%;
+}
+.about .sec1 {
+  margin: 4rem;
+}
+footer {
+  background-color: rgb(213, 230, 245);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
+  height: 380px;
+  margin-bottom: -20rem;
+}
+footer img {
+  margin-left: -70px;
+  margin-top: 30px;
+  width: 60%;
+  float: left;
+  
+}
+
+footer p {
+  font-size: 14px;
+  margin: 20px;
+  
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.second {
+  justify-self: center;
+  align-self: center;
+}
+footer form{
+  position: relative;
+  top: -180px;
+}
+
+input[type="text"],
+input[type="email"] {
+  font-family: "Inter", sans-serif;
+  width: 139%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  margin-left: -0rem;
+  
+}
+textarea {
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: -30px;
+  margin-bottom: 16px;
+  margin-left: 2rem;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background-color: #d75fbf;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #ddffbb;
+}
+
+.name {
+  padding: 0px 200px;
+}
